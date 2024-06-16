@@ -3,8 +3,6 @@ import os
 import unittest
 from urllib.request import urlopen
 
-import urllib3
-
 import pytest
 
 BASE_URL = os.environ.get("BASE_URL")
