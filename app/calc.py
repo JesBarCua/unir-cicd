@@ -1,3 +1,11 @@
+import math
+import app
+
+
+class InvalidPermissions(Exception):
+    pass
+
+
 class Calculator:
     def add(self, x, y):
         self.check_types(x, y)
@@ -22,6 +30,18 @@ class Calculator:
         self.check_types(x, y)
         return x ** y
 
+    def raiz_cuadrada(self, x):
+        self.check_types(x, 0)
+        if x < 0:
+            raise TypeError("Las raices cuadradas no admiten numeros negativos")
+        return math.sqrt(x)
+
+    def logaritmo_base10(self, x):
+        self.check_types(x, 0)
+        if x <= 0:
+            raise TypeError("Los logaritmos en base 10 no admiten numeros menores o iguales a cero")
+        return math.log10(x)
+
     def check_types(self, x, y):
         if not isinstance(x, (int, float)) or not isinstance(y, (int, float)):
             raise TypeError("Parameters must be numbers")
@@ -29,5 +49,9 @@ class Calculator:
 
 if __name__ == "__main__":  # pragma: no cover
     calc = Calculator()
-    result = calc.add(2, 2)
+    result = calc.add(2, 4)
+    print(result)
+    result = calc.raiz_cuadrada(2)
+    print(result)
+    result = calc.logaritmo_base10(5)
     print(result)
